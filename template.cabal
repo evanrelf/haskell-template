@@ -1,0 +1,38 @@
+cabal-version: 2.0
+
+name: template
+version: 0.0.0.0
+build-type: Simple
+
+executable template
+  main-is: Main.hs
+  hs-source-dirs: src
+  -- other-modules:
+
+  build-depends:
+      base ^>=4.12.0.0
+
+  default-language: Haskell2010
+  default-extensions:
+    OverloadedStrings
+
+  ghc-options:
+    -Weverything
+    -Wno-all-missed-specialisations
+    -Wno-implicit-prelude
+    -Wno-missed-specialisations
+    -Wno-missing-export-lists
+    -Wno-missing-import-lists
+    -Wno-missing-local-signatures
+    -Wno-monomorphism-restriction
+    -Wno-safe
+    -Wno-unsafe
+    -Werror=incomplete-record-updates
+    -Werror=incomplete-uni-patterns
+    -Werror=missing-fields
+    -Werror=partial-fields
+    -fshow-warning-groups
+    -foptimal-applicative-do
+    -threaded
+    -rtsopts
+    -with-rtsopts=-N
