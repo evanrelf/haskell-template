@@ -1,24 +1,12 @@
 let
-  src =
-    pkgs.nix-gitignore.gitignoreSource [
-      ".git/"
-      "/nix/"
-      "/default.nix"
-      "/shell.nix"
-      "/README.md"
-      "/LICENSE"
-    ] ./.;
-
-  overlay = pkgsNew: pkgsOld: {
+  haskellPackagesOverlay = pkgsNew: pkgsOld: {
     haskellPackages = pkgsOld.haskellPackages.override (old: {
       overrides =
         let
-          extension = haskellPackagesNew: haskellPackagesOld: {
-            template =
-              haskellPackagesNew.callCabal2nix "template" src {};
-            relude =
-              haskellPackagesNew.callPackage ./nix/haskell-packages/relude.nix {};
-          };
+          extension =
+            (pkgsNew.haskell.lib.packagesFromDirectory {
+              directory = ./nix/haskell-packages;
+            });
         in
           pkgsNew.lib.composeExtensions
             (old.overrides or (_: _: {}))
@@ -26,15 +14,19 @@ let
     });
   };
 
+
   pkgs =
     import ./nix/nixpkgs.nix {
-      overlays = [ overlay ];
+      overlays = [ haskellPackagesOverlay ];
       config = {};
     };
 
+
   template = pkgs.haskellPackages.template;
 
+
   executable = pkgs.haskell.lib.justStaticExecutables template;
+
 
   shell =
     template.env.overrideAttrs (old: {

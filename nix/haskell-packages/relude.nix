@@ -2,7 +2,7 @@
 , gauge, ghc-prim, Glob, hashable, hedgehog, mtl, QuickCheck
 , stdenv, stm, text, transformers, unordered-containers
 }:
-mkDerivation {
+mkDerivation ({
   pname = "relude";
   version = "0.6.0.0";
   sha256 = "2c3a24a8e7b8143386bfec276046387300f66d5de523a0e3d653a50d4d0eae45";
@@ -19,4 +19,8 @@ mkDerivation {
   homepage = "https://github.com/kowainik/relude";
   description = "Custom prelude from Kowainik";
   license = stdenv.lib.licenses.mit;
-}
+} // {
+  # Project-specific modifications
+  doCheck = false;
+  patches = [ ./relude.patch ];
+})

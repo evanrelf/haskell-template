@@ -1,0 +1,53 @@
+diff --git a/src/Relude.hs b/src/Relude.hs
+index 7c5d7db..9d5b904 100644
+@@ -134,7 +134,49 @@ import Relude.Container
+ import Relude.Functor
+ import Relude.Lifted
+ import Relude.List
+-import Relude.Monad
++import Relude.Monad hiding
++  ( ExceptT (..)
++  , IdentityT (..)
++  , MaybeT (..)
++  , MonadReader (..)
++  , MonadState (..)
++  , Reader
++  , ReaderT (..)
++  , State
++  , StateT (..)
++  , ask
++  , asks
++  , evalState
++  , evalStateT
++  , evaluatingState
++  , evaluatingStateT
++  , exceptToMaybeT
++  , execState
++  , execStateT
++  , executingState
++  , executingStateT
++  , get
++  , gets
++  , hoistEither
++  , hoistMaybe
++  , local
++  , maybeToExceptT
++  , modify
++  , modify'
++  , put
++  , reader
++  , runExceptT
++  , runReader
++  , runState
++  , state
++  , usingReader
++  , usingReaderT
++  , usingState
++  , usingStateT
++  , withReader
++  , withReaderT
++  , withState
++  )
+ import Relude.Monoid
+ import Relude.Nub
+ import Relude.Numeric
