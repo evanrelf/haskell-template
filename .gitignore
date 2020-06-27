@@ -1,7 +1,6 @@
-/.ghci_history
+/dist/
+/dist-newstyle/
 /cabal.project.local
 /cabal.project.local~
-/dist-newstyle/
-/dist/
 /result
 /result-*

@@ -58,10 +58,10 @@ index c2ac021..d1344cd 100644
 --- a/src/Relude/Monad/Trans.hs
 +++ b/src/Relude/Monad/Trans.hs
 @@ -37,6 +37,7 @@ import Relude.Monad.Reexport (Either, ExceptT (..), Maybe, MaybeT (..), Reader,
- 
+
  -- $setup
  -- >>> import Relude
 +-- >>> import Relude.Monad
- 
+
  {- | Shorter and more readable alias for @flip runReaderT@.
- 
+
