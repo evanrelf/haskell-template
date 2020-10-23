@@ -1,8 +1,8 @@
 diff --git a/src/Relude.hs b/src/Relude.hs
-index 7c5d7db..b0aa215 100644
+index e5d6a0d..2eb91c5 100644
 --- a/src/Relude.hs
 +++ b/src/Relude.hs
-@@ -133,7 +133,49 @@ import Relude.Function
+@@ -137,7 +137,50 @@ import Relude.Function
  import Relude.Functor
  import Relude.Lifted
  import Relude.List
@@ -19,6 +19,7 @@ index 7c5d7db..b0aa215 100644
 +  , StateT (..)
 +  , ask
 +  , asks
++  , etaReaderT
 +  , evalState
 +  , evalStateT
 +  , evaluatingState
@@ -53,15 +54,3 @@ index 7c5d7db..b0aa215 100644
  import Relude.Monoid
  import Relude.Nub
  import Relude.Numeric
-diff --git a/src/Relude/Monad/Trans.hs b/src/Relude/Monad/Trans.hs
-index c2ac021..d1344cd 100644
---- a/src/Relude/Monad/Trans.hs
-+++ b/src/Relude/Monad/Trans.hs
-@@ -37,6 +37,7 @@ import Relude.Monad.Reexport (Either, ExceptT (..), Maybe, MaybeT (..), Reader,
-
- -- $setup
- -- >>> import Relude
-+-- >>> import Relude.Monad
-
- {- | Shorter and more readable alias for @flip runReaderT@.
-

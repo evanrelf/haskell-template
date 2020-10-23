@@ -1,4 +1,4 @@
-cabal-version: 2.2
+cabal-version: 3.0
 
 name:        template
 version:     0.0.0.0
@@ -13,22 +13,22 @@ copyright:   2020 Evan Relf
 
 common common
   build-depends:
-    , base   ^>= 4.12.0
-    , relude ^>= 0.6.0
+    , base   ^>= 4.13.0
+    , relude ^>= 0.7.0
   mixins:
     , base hiding (Prelude)
     , relude (Relude as Prelude)
   default-language: Haskell2010
   default-extensions:
-    BlockArguments
-    DeriveAnyClass
-    DeriveFunctor
-    DeriveGeneric
-    DerivingStrategies
-    DerivingVia
-    GeneralizedNewtypeDeriving
-    LambdaCase
-    OverloadedStrings
+    , BlockArguments
+    , DeriveAnyClass
+    , DeriveFunctor
+    , DeriveGeneric
+    , DerivingStrategies
+    , DerivingVia
+    , GeneralizedNewtypeDeriving
+    , LambdaCase
+    , OverloadedStrings
   ghc-options:
     -Wall
     -Wcompat

@@ -3,7 +3,6 @@ let
     import ./nix/override-haskell-packages.nix {
       packages = {
         "template" = pkgs.nix-gitignore.gitignoreSource [ ./.nixignore ] ./.;
-        "relude" = "0.6.0.0";
       };
       overrides = {
         "relude" = oldCabal: {
