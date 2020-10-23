@@ -52,13 +52,13 @@ common execuable
 
 library
   import: common
-  hs-source-dirs: src
+  hs-source-dirs: lib
 
 
 executable template
   import: common, execuable
   main-is: Main.hs
-  hs-source-dirs: app
+  hs-source-dirs: exe
   build-depends:
     , template
 
