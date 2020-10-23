@@ -8,6 +8,7 @@ pkgsNew: pkgsOld:
 let
   packagesExtension = pkgsOld.haskell.lib.packageSourceOverrides packages;
 
+
   overridesExtension = haskellPackagesNew: haskellPackagesOld:
     let
       applyOverride = name: fn:
@@ -15,15 +16,18 @@ let
     in
       pkgsOld.lib.mapAttrs applyOverride overrides;
 
-  haskellPackages = pkgsOld.haskellPackages.override (old: {
-    overrides =
-      pkgsOld.lib.fold
-        pkgsOld.lib.composeExtensions
-        (old.overrides or (_: _: {}))
-        [ packagesExtension
-          overridesExtension
-        ];
-  });
+
+  haskellPackages =
+    pkgsOld.haskellPackages.override (old: {
+      overrides =
+        pkgsOld.lib.fold
+          pkgsOld.lib.composeExtensions
+          (old.overrides or (_: _: {}))
+          [ packagesExtension
+            overridesExtension
+          ];
+    });
+
 
   all-cabal-hashes =
     if builtins.isNull hackage then
