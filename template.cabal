@@ -53,6 +53,8 @@ common execuable
 library
   import: common
   hs-source-dirs: lib
+  exposed-modules:
+    , Template
 
 
 executable template
