@@ -1,4 +1,7 @@
 module Main (main) where
 
+import qualified Template
+
+
 main :: IO ()
-main = putTextLn "Hello world"
+main = Template.main
