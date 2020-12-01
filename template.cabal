@@ -41,10 +41,6 @@ common common
     -Wredundant-constraints
     -foptimal-applicative-do
     -fshow-warning-groups
-
-
-common execuable
-  ghc-options:
     -threaded
     -rtsopts
     -with-rtsopts=-N
@@ -58,7 +54,7 @@ library
 
 
 executable template
-  import: common, execuable
+  import: common
   main-is: Main.hs
   hs-source-dirs: exe
   build-depends:
@@ -66,7 +62,7 @@ executable template
 
 
 test-suite test
-  import: common, execuable
+  import: common
   type: exitcode-stdio-1.0
   main-is: Main.hs
   hs-source-dirs: test
