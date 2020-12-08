@@ -3,25 +3,25 @@
 , hackage ? null # Specify revision of all-cabal-hashes
 }:
 
-pkgsNew: pkgsOld:
+pkgsFinal: pkgsPrev:
 
 let
-  packagesExtension = pkgsOld.haskell.lib.packageSourceOverrides packages;
+  packagesExtension = pkgsPrev.haskell.lib.packageSourceOverrides packages;
 
 
-  overridesExtension = haskellPackagesNew: haskellPackagesOld:
+  overridesExtension = haskellPackagesFinal: haskellPackagesPrev:
     let
       applyOverride = name: fn:
-        pkgsOld.haskell.lib.overrideCabal haskellPackagesOld."${name}" fn;
+        pkgsPrev.haskell.lib.overrideCabal haskellPackagesPrev."${name}" fn;
     in
-      pkgsOld.lib.mapAttrs applyOverride overrides;
+      pkgsPrev.lib.mapAttrs applyOverride overrides;
 
 
   haskellPackages =
-    pkgsOld.haskellPackages.override (old: {
+    pkgsPrev.haskellPackages.override (old: {
       overrides =
-        pkgsOld.lib.fold
-          pkgsOld.lib.composeExtensions
+        pkgsPrev.lib.fold
+          pkgsPrev.lib.composeExtensions
           (old.overrides or (_: _: {}))
           [ packagesExtension
             overridesExtension
@@ -31,9 +31,9 @@ let
 
   all-cabal-hashes =
     if builtins.isNull hackage then
-      pkgsOld.all-cabal-hashes
+      pkgsPrev.all-cabal-hashes
     else
-      pkgsOld.fetchurl {
+      pkgsPrev.fetchurl {
         url = "https://github.com/commercialhaskell/all-cabal-hashes/archive/${hackage.rev}.tar.gz";
         sha256 = hackage.sha256;
       };
