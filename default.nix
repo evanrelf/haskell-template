@@ -18,26 +18,5 @@ let
 
   pkgs = import ./nix/nixpkgs.nix { overlays = [ haskellPackagesOverlay ]; };
 
-
-  template = pkgs.haskellPackages.template;
-
-
-  executable = pkgs.haskell.lib.justStaticExecutables template;
-
-
-  shell =
-    template.env.overrideAttrs (old: {
-      buildInputs = with pkgs; old.buildInputs ++ [
-        cabal-install
-        ghcid
-        hlint
-      ];
-    });
-
 in
-  { inherit
-      template
-      executable
-      shell
-    ;
-  }
+  pkgs.haskellPackages.template
