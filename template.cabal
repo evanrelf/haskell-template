@@ -80,3 +80,4 @@ test-suite test
   hs-source-dirs: test
   build-depends:
     , template
+    , hspec
