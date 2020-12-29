@@ -33,10 +33,15 @@ let
     if builtins.isNull hackage then
       pkgsPrev.all-cabal-hashes
     else
-      pkgsPrev.fetchurl {
-        url = "https://github.com/commercialhaskell/all-cabal-hashes/archive/${hackage.rev}.tar.gz";
-        sha256 = hackage.sha256;
-      };
+      builtins.trace
+        ''
+          Ignore warnings about using `fetchFromGitHub` for archives from GitHub!
+          The `fetchFromGitHub` utility hangs when fetching `commercialhaskell/all-cabal-hashes`.
+        ''
+        (pkgsPrev.fetchurl {
+          url = "https://github.com/commercialhaskell/all-cabal-hashes/archive/${hackage.rev}.tar.gz";
+          sha256 = hackage.sha256;
+        });
 
 in
   { inherit
