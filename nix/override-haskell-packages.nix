@@ -30,7 +30,7 @@ let
 
 
   all-cabal-hashes =
-    if builtins.isNull hackage then
+    if hackage == null then
       pkgsPrev.all-cabal-hashes
     else
       builtins.trace
