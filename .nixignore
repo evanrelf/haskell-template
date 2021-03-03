@@ -1,3 +1,8 @@
-/.git/
-/nix/
-/*.nix
+*
+!*/
+!/bench/**
+!/exe/**
+!/lib/**
+!/src/**
+!/test/**
+!/*.cabal

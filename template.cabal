@@ -13,8 +13,8 @@ copyright:   2021 Evan Relf
 
 common common
   build-depends:
-    , base   ^>= 4.13.0
-    , relude ^>= 0.7.0
+    , base   >= 4.13.0.0 && < 5.0
+    , relude >=  0.7.0.0 && < 0.8
   mixins:
     , base hiding (Prelude)
     , relude (Relude as Prelude)

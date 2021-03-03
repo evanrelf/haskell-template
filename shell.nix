@@ -1,13 +1,14 @@
-let
-  pkgs = import ./nix/nixpkgs.nix {};
+{ pkgs ? import ./nix/pkgs.nix }:
 
-  template = import ./default.nix;
+pkgs.haskellPackages.shellFor {
+  packages = p: [
+    p.template
+  ];
 
-in
-  template.env.overrideAttrs (old: {
-    buildInputs = with pkgs; old.buildInputs ++ [
-      cabal-install
-      ghcid
-      hlint
-    ];
-  })
+  buildInputs = [
+    pkgs.cabal-install
+    pkgs.ghcid
+  ];
+
+  withHoogle = true;
+}
