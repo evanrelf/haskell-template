@@ -2,7 +2,6 @@
 , packages ? {}
 , override ? {}
 , overrideCabal ? {}
-, overrideAttrs ? {}
 , hackage ? null
 }:
 
@@ -24,12 +23,6 @@ let
     in
       pkgsPrev.lib.mapAttrs applyOverride overrideCabal;
 
-  overrideAttrsExtension = haskellPackagesFinal: haskellPackagesPrev:
-    let
-      applyOverride = name: fn: haskellPackagesPrev."${name}".overrideAttrs fn;
-    in
-      pkgsPrev.lib.mapAttrs applyOverride overrideAttrs;
-
   haskellPackages =
     (if ghcVersion == null
        then pkgsPrev.haskellPackages
@@ -42,7 +35,6 @@ let
           [ packagesExtension
             overrideExtension
             overrideCabalExtension
-            overrideAttrsExtension
           ];
     });
 
