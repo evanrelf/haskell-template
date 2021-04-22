@@ -1,7 +1,7 @@
 cabal-version: 3.0
 
 name:        template
-version:     0.0.0.0
+version:     0.1.0.0
 synopsis:    Template for my Haskell + Nix projects
 description: Template for my Haskell + Nix projects
 author:      Evan Relf <evan@evanrelf.com>
