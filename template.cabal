@@ -80,5 +80,6 @@ test-suite test
   main-is: Main.hs
   hs-source-dirs: test
   build-depends:
+    , tasty
+    , tasty-hunit
     , template
-    , hspec

@@ -1,9 +1,13 @@
 module Main (main) where
 
-import qualified Test.Hspec as Hspec
+import Test.Tasty.HUnit ((@?=))
+
+import qualified Test.Tasty as Tasty
+import qualified Test.Tasty.HUnit as HUnit
 
 
 main :: IO ()
-main = Hspec.hspec do
-  Hspec.it "works" do
-    Hspec.pending
+main = Tasty.defaultMain $ Tasty.testGroup "Examples" $
+  [ HUnit.testCase "Example test" $
+      ['a', 'b', 'c'] `compare` ['a' .. 'z'] @?= LT
+  ]
