@@ -1,7 +1,7 @@
 { ghcVersion ? null
-, packages ? {}
-, override ? {}
-, overrideCabal ? {}
+, packages ? { }
+, override ? { }
+, overrideCabal ? { }
 , hackage ? null
 }:
 
@@ -14,25 +14,26 @@ let
     let
       applyOverride = name: fn: haskellPackagesPrev."${name}".override fn;
     in
-      pkgsPrev.lib.mapAttrs applyOverride override;
+    pkgsPrev.lib.mapAttrs applyOverride override;
 
   overrideCabalExtension = haskellPackagesFinal: haskellPackagesPrev:
     let
       applyOverride = name: fn:
         pkgsPrev.haskell.lib.overrideCabal haskellPackagesPrev."${name}" fn;
     in
-      pkgsPrev.lib.mapAttrs applyOverride overrideCabal;
+    pkgsPrev.lib.mapAttrs applyOverride overrideCabal;
 
   haskellPackages =
     (if ghcVersion == null
-       then pkgsPrev.haskellPackages
-       else pkgsPrev.haskell.packages."${ghcVersion}"
+    then pkgsPrev.haskellPackages
+    else pkgsPrev.haskell.packages."${ghcVersion}"
     ).override (old: {
       overrides =
         pkgsPrev.lib.fold
           pkgsPrev.lib.composeExtensions
-          (old.overrides or (_: _: {}))
-          [ packagesExtension
+          (old.overrides or (_: _: { }))
+          [
+            packagesExtension
             overrideExtension
             overrideCabalExtension
           ];
@@ -48,8 +49,9 @@ let
       };
 
 in
-  { inherit
-      haskellPackages
-      all-cabal-hashes
+{
+  inherit
+    haskellPackages
+    all-cabal-hashes
     ;
-  }
+}
