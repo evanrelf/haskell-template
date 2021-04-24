@@ -2,6 +2,7 @@
 , packages ? { }
 , override ? { }
 , overrideCabal ? { }
+, overrideAttrs ? { }
 , hackage ? null
 }:
 
@@ -15,6 +16,12 @@ let
       applyOverride = name: fn: haskellPackagesPrev."${name}".override fn;
     in
     pkgsPrev.lib.mapAttrs applyOverride override;
+
+  overrideAttrsExtension = haskellPackagesFinal: haskellPackagesPrev:
+    let
+      applyOverride = name: fn: haskellPackagesPrev."${name}".overrideAttrs fn;
+    in
+    pkgsPrev.lib.mapAttrs applyOverride overrideAttrs;
 
   overrideCabalExtension = haskellPackagesFinal: haskellPackagesPrev:
     let
@@ -36,6 +43,7 @@ let
             packagesExtension
             overrideExtension
             overrideCabalExtension
+            overrideAttrsExtension
           ];
     });
 
