@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+IFS=$'\n\t'
+
+command -v git >/dev/null 2>&1 \
+  || (echo "Missing 'git'" >&2; exit 1)
+
+command -v nixpkgs-fmt >/dev/null 2>&1 \
+  || (echo "Missing 'nixpkgs-fmt'" >&2; exit 1)
+
+git_root=$(git rev-parse --show-toplevel)
+
+nixpkgs-fmt "${git_root}"/**/*.nix
