@@ -8,6 +8,7 @@ pkgs.haskellPackages.shellFor {
   buildInputs = [
     pkgs.cabal-install
     pkgs.ghcid
+    pkgs.haskellPackages.fourmolu
   ];
 
   withHoogle = true;
