@@ -7,7 +7,6 @@ let
 in
 overrideHaskellPackages {
   packages = {
-    "template" =
-      pkgsPrev.nix-gitignore.gitignoreSource [ ../../.nixignore ] ../../.;
+    "template" = pkgsPrev.lib.gitignoreSource ../../.;
   };
 }
