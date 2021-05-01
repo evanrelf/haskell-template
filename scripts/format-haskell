@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+IFS=$'\n\t'
+
+command -v git >/dev/null 2>&1 \
+  || (echo "Missing 'git'" >&2; exit 1)
+
+command -v fourmolu >/dev/null 2>&1 \
+  || (echo "Missing 'fourmolu'" >&2; exit 1)
+
+git_root=$(git rev-parse --show-toplevel)
+
+fourmolu \
+  --mode inplace \
+  --ghc-opt -XBangPatterns \
+  --ghc-opt -XTypeApplications \
+  "${git_root}"/**/*.hs
