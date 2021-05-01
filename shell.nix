@@ -9,6 +9,7 @@ pkgs.haskellPackages.shellFor {
     pkgs.cabal-install
     pkgs.ghcid
     pkgs.haskellPackages.fourmolu
+    pkgs.nixpkgs-fmt
   ];
 
   withHoogle = true;
