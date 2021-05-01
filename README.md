@@ -6,6 +6,6 @@ Template for my Haskell + Nix projects
 
 ## Checklist
 
-- Replace occurances of `template` (`rg --hidden 'template'`) with your project
+- Replace occurances of `template` (`rg --ignore-case --hidden 'template'`) with your project
   name
 - Add `CACHIX_AUTH_TOKEN` secret to GitHub repo for CI
