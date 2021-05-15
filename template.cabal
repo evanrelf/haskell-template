@@ -50,7 +50,6 @@ common common
     -Wmissing-home-modules
     -Wprepositive-qualified-module
     -Wredundant-constraints
-    -fshow-warning-groups
 
 
 common executable
