@@ -44,7 +44,6 @@ common common
     -Widentities
     -Wmissing-home-modules
     -Wredundant-constraints
-    -foptimal-applicative-do
     -fshow-warning-groups
 
 
