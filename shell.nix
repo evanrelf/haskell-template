@@ -1,5 +1,7 @@
-{ pkgs ? import ./nix/pkgs.nix }:
+let
+  pkgs = import ./nix/pkgs.nix;
 
+in
 pkgs.haskellPackages.shellFor {
   packages = p: [
     p.template
