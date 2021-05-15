@@ -14,5 +14,6 @@ git_root=$(git rev-parse --show-toplevel)
 fourmolu \
   --mode inplace \
   --ghc-opt -XBangPatterns \
+  --ghc-opt -XImportQualifiedPost \
   --ghc-opt -XTypeApplications \
   "${git_root}"/**/*.hs

@@ -28,6 +28,7 @@ common common
     , DerivingStrategies
     , DerivingVia
     , GeneralizedNewtypeDeriving
+    , ImportQualifiedPost
     , InstanceSigs
     , LambdaCase
     , NamedFieldPuns
@@ -43,6 +44,7 @@ common common
     -Werror=partial-fields
     -Widentities
     -Wmissing-home-modules
+    -Wprepositive-qualified-module
     -Wredundant-constraints
     -fshow-warning-groups
 
