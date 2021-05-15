@@ -21,20 +21,24 @@ common common
     , relude
   default-language: Haskell2010
   default-extensions:
-    , BlockArguments
-    , DeriveAnyClass
-    , DeriveFunctor
-    , DeriveGeneric
-    , DerivingStrategies
-    , DerivingVia
-    , GeneralizedNewtypeDeriving
-    , ImportQualifiedPost
-    , InstanceSigs
-    , LambdaCase
-    , NamedFieldPuns
-    , OverloadedStrings
-    , ScopedTypeVariables
-    , TypeApplications
+    -- GHC2021 (https://git.io/JsCTl)
+    BangPatterns BinaryLiterals ConstrainedClassMethods ConstraintKinds
+    DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift
+    DeriveTraversable EmptyCase EmptyDataDeriving ExistentialQuantification
+    ExplicitForAll FlexibleContexts FlexibleInstances GADTSyntax
+    GeneralisedNewtypeDeriving HexFloatLiterals ImportQualifiedPost InstanceSigs
+    KindSignatures MultiParamTypeClasses NamedFieldPuns NamedWildCards
+    NumericUnderscores PolyKinds PostfixOperators RankNTypes ScopedTypeVariables
+    StandaloneDeriving StandaloneKindSignatures TupleSections TypeApplications
+    TypeOperators TypeSynonymInstances
+    -- Extra
+    BlockArguments
+    DeriveAnyClass
+    DerivingStrategies
+    DerivingVia
+    GeneralizedNewtypeDeriving
+    LambdaCase
+    OverloadedStrings
   ghc-options:
     -Wall
     -Wcompat
