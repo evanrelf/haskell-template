@@ -20,15 +20,15 @@ let
       (name: fn: haskellPackagesPrev."${name}".override fn)
       (override haskellPackagesFinal haskellPackagesPrev);
 
-  overrideAttrsExtension = haskellPackagesFinal: haskellPackagesPrev:
-    pkgsPrev.lib.mapAttrs
-      (name: fn: haskellPackagesPrev."${name}".overrideAttrs fn)
-      (overrideAttrs haskellPackagesFinal haskellPackagesPrev);
-
   overrideCabalExtension = haskellPackagesFinal: haskellPackagesPrev:
     pkgsPrev.lib.mapAttrs
       (name: fn: pkgsPrev.haskell.lib.overrideCabal haskellPackagesPrev."${name}" fn)
       (overrideCabal haskellPackagesFinal haskellPackagesPrev);
+
+  overrideAttrsExtension = haskellPackagesFinal: haskellPackagesPrev:
+    pkgsPrev.lib.mapAttrs
+      (name: fn: haskellPackagesPrev."${name}".overrideAttrs fn)
+      (overrideAttrs haskellPackagesFinal haskellPackagesPrev);
 
   haskellPackages =
     (if compiler == null then
