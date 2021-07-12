@@ -1,34 +1,34 @@
 { compiler ? null
-, packages ? { }
-, override ? { }
-, overrideCabal ? { }
-, overrideAttrs ? { }
+, packages ? (_: _: { })
+, override ? (_: _: { })
+, overrideCabal ? (_: _: { })
+, overrideAttrs ? (_: _: { })
 , hackage ? null
 }:
 
 pkgsFinal: pkgsPrev:
 
 let
-  packagesExtension = pkgsPrev.haskell.lib.packageSourceOverrides packages;
+  packagesExtension = haskellPackagesFinal: haskellPackagesPrev:
+    pkgsPrev.haskell.lib.packageSourceOverrides
+      (packages haskellPackagesFinal haskellPackagesPrev)
+      haskellPackagesFinal
+      haskellPackagesPrev;
 
   overrideExtension = haskellPackagesFinal: haskellPackagesPrev:
-    let
-      applyOverride = name: fn: haskellPackagesPrev."${name}".override fn;
-    in
-    pkgsPrev.lib.mapAttrs applyOverride override;
+    pkgsPrev.lib.mapAttrs
+      (name: fn: haskellPackagesPrev."${name}".override fn)
+      (override haskellPackagesFinal haskellPackagesPrev);
 
   overrideAttrsExtension = haskellPackagesFinal: haskellPackagesPrev:
-    let
-      applyOverride = name: fn: haskellPackagesPrev."${name}".overrideAttrs fn;
-    in
-    pkgsPrev.lib.mapAttrs applyOverride overrideAttrs;
+    pkgsPrev.lib.mapAttrs
+      (name: fn: haskellPackagesPrev."${name}".overrideAttrs fn)
+      (overrideAttrs haskellPackagesFinal haskellPackagesPrev);
 
   overrideCabalExtension = haskellPackagesFinal: haskellPackagesPrev:
-    let
-      applyOverride = name: fn:
-        pkgsPrev.haskell.lib.overrideCabal haskellPackagesPrev."${name}" fn;
-    in
-    pkgsPrev.lib.mapAttrs applyOverride overrideCabal;
+    pkgsPrev.lib.mapAttrs
+      (name: fn: pkgsPrev.haskell.lib.overrideCabal haskellPackagesPrev."${name}" fn)
+      (overrideCabal haskellPackagesFinal haskellPackagesPrev);
 
   haskellPackages =
     (if compiler == null then

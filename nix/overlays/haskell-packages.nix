@@ -6,7 +6,7 @@ let
 
 in
 overrideHaskellPackages {
-  packages = {
+  packages = haskellPackagesFinal: haskellPackagesPrev: {
     "template" = pkgsPrev.lib.gitignoreSource ../../.;
   };
 }
