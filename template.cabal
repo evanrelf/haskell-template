@@ -15,11 +15,14 @@ common common
   build-depends:
     , base   >= 4.14.1.0 && < 4.15
     , relude >= 0.7.0.0  && < 0.8
+
   mixins:
     , base hiding (Prelude)
     , relude (Relude as Prelude)
     , relude
+
   default-language: Haskell2010
+
   default-extensions:
     -- GHC2021 (https://git.io/JsCTl)
     BangPatterns BinaryLiterals ConstrainedClassMethods ConstraintKinds
@@ -39,6 +42,7 @@ common common
     GeneralizedNewtypeDeriving
     LambdaCase
     OverloadedStrings
+
   ghc-options:
     -Wall
     -Wcompat
@@ -61,7 +65,9 @@ common executable
 
 library
   import: common
+
   hs-source-dirs: lib
+
   exposed-modules:
     , Template
 
@@ -70,8 +76,11 @@ executable template
   import:
     , common
     , executable
+
   main-is: Main.hs
+
   hs-source-dirs: exe
+
   build-depends:
     , template
 
@@ -80,9 +89,13 @@ test-suite test
   import:
     , common
     , executable
+
   type: exitcode-stdio-1.0
+
   main-is: Main.hs
+
   hs-source-dirs: test
+
   build-depends:
     , tasty       >= 1.4.1    && < 1.5
     , tasty-hunit >= 0.10.0.3 && < 0.11
