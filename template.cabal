@@ -1,4 +1,4 @@
-cabal-version: 3.0
+cabal-version: 2.2
 
 name:        template
 version:     0.1.0.0
@@ -68,7 +68,7 @@ library
   hs-source-dirs: lib
 
   exposed-modules:
-    , Template
+    Template
 
 
 executable template
