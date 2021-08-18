@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Template qualified
+import qualified Template
 
 
 main :: IO ()

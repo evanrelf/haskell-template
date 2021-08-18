@@ -52,7 +52,6 @@ common common
     -Werror=partial-fields
     -Widentities
     -Wmissing-home-modules
-    -Wprepositive-qualified-module
     -Wredundant-constraints
 
 
