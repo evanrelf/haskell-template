@@ -1,12 +1,13 @@
 pkgsFinal: pkgsPrev:
 
 let
-  overrideHaskellPackages = attrs:
-    import ../lib/override-haskell-packages.nix attrs pkgsFinal pkgsPrev;
+  haskellOverlay = import ../lib/haskell-overlay.nix pkgsFinal pkgsPrev;
 
 in
-overrideHaskellPackages {
-  packages = haskellPackagesFinal: haskellPackagesPrev: {
-    "template" = pkgsPrev.lib.gitignoreSource ../../.;
-  };
+haskellOverlay.mkOverlay {
+  extensions = [
+    (haskellOverlay.sources (haskellPackagesFinal: haskellPackagesPrev: {
+      "template" = pkgsPrev.lib.gitignoreSource ../../.;
+    }))
+  ];
 }
