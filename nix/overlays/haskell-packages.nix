@@ -1,15 +1,34 @@
 pkgsFinal: pkgsPrev:
 
 let
-  inherit (pkgsPrev.lib) haskellOverlay;
+  inherit (pkgsPrev) haskell-overlay;
 
 in
-haskellOverlay.mkOverlay {
+haskell-overlay.mkOverlay
+{
   extensions = [
-    (haskellOverlay.sources (haskellPackagesFinal: haskellPackagesPrev: {
-      "template" = pkgsPrev.lib.gitignoreSource ../../.;
+    (haskell-overlay.sources (haskellPackagesFinal: haskellPackagesPrev: {
+      "template" = pkgsPrev.gitignoreSource ../../.;
     }))
+
+    (haskellPackagesFinal: haskellPackagesPrev: {
+      "template-shell" =
+        pkgsFinal.haskellPackages.shellFor {
+          packages = p: [
+            p.template
+          ];
+
+          buildInputs = [
+            pkgsFinal.cabal-install
+            pkgsFinal.ghcid
+            pkgsFinal.haskellPackages.fourmolu
+            pkgsFinal.nixpkgs-fmt
+          ];
+
+          withHoogle = true;
+        };
+    })
   ];
 }
-pkgsFinal
-pkgsPrev
+  pkgsFinal
+  pkgsPrev
