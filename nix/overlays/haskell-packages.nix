@@ -1,7 +1,7 @@
 pkgsFinal: pkgsPrev:
 
 let
-  haskellOverlay = import ../lib/haskell-overlay.nix pkgsFinal pkgsPrev;
+  inherit (pkgsPrev.lib) haskellOverlay;
 
 in
 haskellOverlay.mkOverlay {
@@ -11,3 +11,5 @@ haskellOverlay.mkOverlay {
     }))
   ];
 }
+pkgsFinal
+pkgsPrev

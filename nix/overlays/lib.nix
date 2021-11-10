@@ -6,6 +6,8 @@ let
 in
 {
   lib = pkgsPrev.lib // {
+    haskellOverlay = import ../lib/haskell-overlay.nix;
+
     inherit (gitignore)
       gitignoreSource
       gitignoreFilter

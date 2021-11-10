@@ -1,11 +1,21 @@
-pkgsFinal: pkgsPrev:
-
 let
   mkOverlay =
     { compiler ? null
     , hackage ? null
     , extensions ? [ ]
     }:
+    pkgsFinal: pkgsPrev:
+    let
+      canHydrate = f:
+        builtins.isFunction f &&
+        builtins.elem "INTERNAL" (builtins.attrNames (builtins.functionArgs f));
+
+      hydrate = f:
+        if canHydrate f then
+          f { inherit pkgsFinal pkgsPrev; }
+        else
+          f;
+    in
     {
       haskellPackages =
         (if compiler == null then
@@ -17,7 +27,7 @@ let
             pkgsPrev.lib.fold
               pkgsPrev.lib.composeExtensions
               (prev.overrides or (_: _: { }))
-              extensions;
+              (builtins.map hydrate extensions);
         });
 
       all-cabal-hashes =
@@ -30,29 +40,37 @@ let
           };
     };
 
-  sources = extension: haskellPackagesFinal: haskellPackagesPrev:
-    pkgsPrev.haskell.lib.packageSourceOverrides
-      (extension haskellPackagesFinal haskellPackagesPrev)
-      haskellPackagesFinal
-      haskellPackagesPrev;
+  sources = extension:
+    { pkgsFinal, pkgsPrev, INTERNAL ? null }:
+    haskellPackagesFinal: haskellPackagesPrev:
+      pkgsPrev.haskell.lib.packageSourceOverrides
+        (extension haskellPackagesFinal haskellPackagesPrev)
+        haskellPackagesFinal
+        haskellPackagesPrev;
 
-  override = extension: haskellPackagesFinal: haskellPackagesPrev:
-    pkgsPrev.lib.mapAttrs
-      (name: fn: haskellPackagesPrev."${name}".override fn)
-      (extension haskellPackagesFinal haskellPackagesPrev);
+  override = extension:
+    { pkgsFinal, pkgsPrev, INTERNAL ? null }:
+    haskellPackagesFinal: haskellPackagesPrev:
+      pkgsPrev.lib.mapAttrs
+        (name: fn: haskellPackagesPrev."${name}".override fn)
+        (extension haskellPackagesFinal haskellPackagesPrev);
 
-  overrideCabal = extension: haskellPackagesFinal: haskellPackagesPrev:
-    pkgsPrev.lib.mapAttrs
-      (name: fn:
-        pkgsPrev.haskell.lib.overrideCabal
-          haskellPackagesPrev."${name}"
-          fn)
-      (extension haskellPackagesFinal haskellPackagesPrev);
+  overrideCabal = extension:
+    { pkgsFinal, pkgsPrev, INTERNAL ? null }:
+    haskellPackagesFinal: haskellPackagesPrev:
+      pkgsPrev.lib.mapAttrs
+        (name: fn:
+          pkgsPrev.haskell.lib.overrideCabal
+            haskellPackagesPrev."${name}"
+            fn)
+        (extension haskellPackagesFinal haskellPackagesPrev);
 
-  overrideAttrs = extension: haskellPackagesFinal: haskellPackagesPrev:
-    pkgsPrev.lib.mapAttrs
-      (name: fn: haskellPackagesPrev."${name}".overrideAttrs fn)
-      (extension haskellPackagesFinal haskellPackagesPrev);
+  overrideAttrs = extension:
+    { pkgsFinal, pkgsPrev, INTERNAL ? null }:
+    haskellPackagesFinal: haskellPackagesPrev:
+      pkgsPrev.lib.mapAttrs
+        (name: fn: haskellPackagesPrev."${name}".overrideAttrs fn)
+        (extension haskellPackagesFinal haskellPackagesPrev);
 
 in
 {
