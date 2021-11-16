@@ -53,11 +53,11 @@
     },
     "haskell-overlay": {
       "locked": {
-        "lastModified": 1636531616,
-        "narHash": "sha256-o+kLtkiE/qaSZKEMjw17bTM+aN1B0BZx+r85D3wF6TU=",
+        "lastModified": 1637102981,
+        "narHash": "sha256-ke5SAgtd2Obz3zdAkFb88MZ/iiu/PGAsffm4q7epl1E=",
         "owner": "evanrelf",
         "repo": "haskell-overlay",
-        "rev": "4f2357a247b76865a55393cab7640fcec4dff75e",
+        "rev": "04f39fa4f0c2b011f46b44bbd5b9fe374d90746c",
         "type": "github"
       },
       "original": {
