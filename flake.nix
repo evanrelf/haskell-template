@@ -29,12 +29,7 @@
           inherit system;
           overlays = [
             haskell-overlay.overlay
-            (pkgsFinal: pkgsPrev: {
-              inherit (gitignore.lib)
-                gitignoreSource
-                gitignoreFilter
-                ;
-            })
+            gitignore.overlay
             (import ./nix/overlays/haskell-packages.nix)
           ];
         };
