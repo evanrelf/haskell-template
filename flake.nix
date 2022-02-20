@@ -1,5 +1,5 @@
 {
-  description = "sidekick";
+  description = "template";
 
   inputs = {
     flake-compat = {
