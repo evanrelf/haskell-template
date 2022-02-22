@@ -3,7 +3,9 @@
 set -Eeuo pipefail
 IFS=$'\n\t'
 
-if command -v xdg-open >/dev/null 2>&1; then
+if [ -n "${BROWSER}" ]; then
+  open="${BROWSER}"
+elif command -v xdg-open >/dev/null 2>&1; then
   open="xdg-open"
 elif command -v open >/dev/null 2>&1; then
   open="open"
