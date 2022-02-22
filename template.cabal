@@ -6,7 +6,7 @@ synopsis:    Template for my Haskell + Nix projects
 description: Template for my Haskell + Nix projects
 author:      Evan Relf <evan@evanrelf.com>
 maintainer:  Evan Relf <evan@evanrelf.com>
-homepage:    https://github.com/evanrelf/template
+homepage:    https://github.com/evanrelf/haskell-template
 license:     ISC
 copyright:   2021 Evan Relf
 

@@ -1,6 +1,6 @@
-# template
+# Haskell Template
 
-[![CI](https://github.com/evanrelf/template/actions/workflows/ci.yml/badge.svg)](https://github.com/evanrelf/template/actions/workflows/ci.yml)
+[![CI](https://github.com/evanrelf/haskell-template/actions/workflows/ci.yml/badge.svg)](https://github.com/evanrelf/haskell-template/actions/workflows/ci.yml)
 
 Template for my Haskell + Nix projects
 
