@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-set -Eeuo pipefail
-IFS=$'\n\t'
-
-git_root=$(git rev-parse --show-toplevel)
-
-nixpkgs-fmt "${git_root}"/**/*.nix

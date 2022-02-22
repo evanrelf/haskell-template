@@ -21,11 +21,7 @@ haskell-overlay.mkOverlay
           buildInputs = [
             pkgsFinal.cabal-install
             pkgsFinal.ghcid
-            pkgsFinal.haskellPackages.fourmolu
-            pkgsFinal.nixpkgs-fmt
           ];
-
-          withHoogle = true;
         };
     })
   ];
