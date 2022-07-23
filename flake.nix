@@ -36,15 +36,16 @@
     in
     rec {
       packages = {
-        inherit (pkgs.haskellPackages)
-          template
-          template-shell
-          ;
+        default = packages.template;
+
+        template = pkgs.haskellPackages.template;
       };
 
-      defaultPackage = packages.template;
+      devShells = {
+        default = devShells.template;
 
-      devShell = packages.template-shell;
+        template = pkgs.haskellPackages.template-shell;
+      };
     }
     );
 }
