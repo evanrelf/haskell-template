@@ -48,7 +48,6 @@ common common
     -Widentities
     -Wmissing-home-modules
     -Wredundant-constraints
-    -Wunused-packages
 
 common executable
   ghc-options:
