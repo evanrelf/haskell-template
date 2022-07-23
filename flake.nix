@@ -33,7 +33,12 @@
         devShells = {
           default = devShells.template;
 
-          template = pkgs.haskellPackages.template-shell;
+          template = packages.template.env.overrideAttrs (prev: {
+            buildInputs = (prev.buildInputs or [ ]) ++ [
+              pkgs.cabal-install
+              pkgs.ghcid
+            ];
+          });
         };
       }
     );
