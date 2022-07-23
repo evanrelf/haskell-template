@@ -14,38 +14,31 @@
     };
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , flake-utils
-    , gitignore
-    , haskell-overlay
-    , ...
-    }:
+  outputs = inputs@{ flake-utils, nixpkgs, ... }:
     flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs =
-        import nixpkgs {
-          inherit system;
-          overlays = [
-            haskell-overlay.overlay
-            gitignore.overlay
-            (import ./nix/overlays/haskell-packages.nix)
-          ];
+      let
+        pkgs =
+          import nixpkgs {
+            inherit system;
+            overlays = [
+              inputs.haskell-overlay.overlay
+              inputs.gitignore.overlay
+              (import ./nix/overlays/haskell-packages.nix)
+            ];
+          };
+      in
+      rec {
+        packages = {
+          default = packages.template;
+
+          template = pkgs.haskellPackages.template;
         };
-    in
-    rec {
-      packages = {
-        default = packages.template;
 
-        template = pkgs.haskellPackages.template;
-      };
+        devShells = {
+          default = devShells.template;
 
-      devShells = {
-        default = devShells.template;
-
-        template = pkgs.haskellPackages.template-shell;
-      };
-    }
+          template = pkgs.haskellPackages.template-shell;
+        };
+      }
     );
 }
