@@ -41,6 +41,7 @@ common common
   ghc-options:
     -Wall
     -Wcompat
+    -Werror=incomplete-patterns
     -Werror=incomplete-record-updates
     -Werror=incomplete-uni-patterns
     -Werror=missing-fields
