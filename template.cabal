@@ -25,7 +25,7 @@ common common
     DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift
     DeriveTraversable EmptyCase EmptyDataDeriving ExistentialQuantification
     ExplicitForAll FlexibleContexts FlexibleInstances GADTSyntax
-    GeneralisedNewtypeDeriving HexFloatLiterals ImportQualifiedPost InstanceSigs
+    GeneralizedNewtypeDeriving HexFloatLiterals ImportQualifiedPost InstanceSigs
     KindSignatures MultiParamTypeClasses NamedFieldPuns NamedWildCards
     NumericUnderscores PolyKinds PostfixOperators RankNTypes ScopedTypeVariables
     StandaloneDeriving StandaloneKindSignatures TupleSections TypeApplications
@@ -35,7 +35,6 @@ common common
     DeriveAnyClass
     DerivingStrategies
     DerivingVia
-    GeneralizedNewtypeDeriving
     LambdaCase
     OverloadedStrings
   ghc-options:
