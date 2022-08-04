@@ -45,6 +45,7 @@ common common
     -Werror=incomplete-record-updates
     -Werror=incomplete-uni-patterns
     -Werror=missing-fields
+    -Werror=missing-methods
     -Werror=partial-fields
     -Widentities
     -Wmissing-home-modules
