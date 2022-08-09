@@ -37,6 +37,7 @@ common common
     DerivingVia
     LambdaCase
     OverloadedStrings
+    StrictData
   ghc-options:
     -Wall
     -Wcompat
