@@ -1,9 +1,8 @@
 module Main (main) where
 
+import Test.Tasty qualified as Tasty
 import Test.Tasty.HUnit ((@?=))
-
-import qualified Test.Tasty as Tasty
-import qualified Test.Tasty.HUnit as HUnit
+import Test.Tasty.HUnit qualified as HUnit
 
 main :: IO ()
 main = Tasty.defaultMain do
