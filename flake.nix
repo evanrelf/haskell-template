@@ -37,6 +37,7 @@
             buildInputs = (prev.buildInputs or [ ]) ++ [
               pkgs.cabal-install
               pkgs.ghcid
+              pkgs.nixpkgs-fmt
             ];
           });
         };
