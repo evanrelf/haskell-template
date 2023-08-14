@@ -18,19 +18,8 @@ common common
     , base hiding (Prelude)
     , relude (Relude as Prelude)
     , relude
-  default-language: Haskell2010
+  default-language: GHC2021
   default-extensions:
-    -- GHC2021 (https://git.io/JsCTl)
-    BangPatterns BinaryLiterals ConstrainedClassMethods ConstraintKinds
-    DeriveDataTypeable DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift
-    DeriveTraversable EmptyCase EmptyDataDeriving ExistentialQuantification
-    ExplicitForAll FlexibleContexts FlexibleInstances GADTSyntax
-    GeneralizedNewtypeDeriving HexFloatLiterals ImportQualifiedPost InstanceSigs
-    KindSignatures MultiParamTypeClasses NamedFieldPuns NamedWildCards
-    NumericUnderscores PolyKinds PostfixOperators RankNTypes ScopedTypeVariables
-    StandaloneDeriving StandaloneKindSignatures TupleSections TypeApplications
-    TypeOperators TypeSynonymInstances
-    -- Extra
     BlockArguments
     DeriveAnyClass
     DerivingStrategies
