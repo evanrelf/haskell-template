@@ -74,3 +74,16 @@ test-suite test
     , tasty
     , tasty-hunit
     , template
+
+benchmark bench
+  import:
+    , common
+    , executable
+  type: exitcode-stdio-1.0
+  main-is: Main.hs
+  hs-source-dirs: bench
+  build-depends:
+    , tasty-bench
+  ghc-options:
+    -fproc-alignment=64
+    -with-rtsopts=-A32m
