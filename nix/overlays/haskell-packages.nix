@@ -8,7 +8,7 @@ haskell-overlay.mkOverlay
 {
   extensions = [
     (haskell-overlay.sources (haskellPackagesFinal: haskellPackagesPrev: {
-      "template" = pkgsPrev.gitignoreSource ../../.;
+      "template" = ../../.;
     }))
   ];
 }
