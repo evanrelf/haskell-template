@@ -52,6 +52,8 @@ common executable
 library
   import: common
   hs-source-dirs: src
+  build-depends:
+    , optparse-applicative
   exposed-modules:
     , Template
 
@@ -61,6 +63,7 @@ executable template
     , executable
   main-is: src/Main.hs
   build-depends:
+    , optparse-applicative
     , template
 
 test-suite test
