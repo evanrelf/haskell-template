@@ -25,6 +25,7 @@ common common
     , DerivingStrategies
     , DerivingVia
     , LambdaCase
+    , OverloadedRecordDot
     , OverloadedStrings
     , StrictData
   ghc-options:
