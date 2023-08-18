@@ -8,7 +8,13 @@ haskell-overlay.mkOverlay
 {
   extensions = [
     (haskell-overlay.sources (haskellPackagesFinal: haskellPackagesPrev: {
-      "template" = ../../.;
+      template = ../../.;
+    }))
+
+    (haskell-overlay.overrideCabal (haskellPackagesFinal: haskellPackagesPrev: {
+      template = prev: {
+        doBenchmark = true;
+      };
     }))
   ];
 }
