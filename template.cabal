@@ -72,12 +72,17 @@ test-suite test
     , common
     , executable
   type: exitcode-stdio-1.0
-  main-is: Main.hs
+  main-is: Driver.hs
   hs-source-dirs: test
   build-depends:
+    , hedgehog
     , tasty
+    , tasty-discover
+    , tasty-hedgehog
     , tasty-hunit
     , template
+  other-modules:
+    TemplateTest
 
 benchmark bench
   import:
