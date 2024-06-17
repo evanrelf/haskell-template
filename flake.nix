@@ -2,41 +2,46 @@
   description = "template";
 
   inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    ghciwatch-compat = {
+      url = "github:evanrelf/ghciwatch-compat";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     haskell-overlay.url = "github:evanrelf/haskell-overlay";
     nixpkgs.url = "github:NixOS/nixpkgs";
+    systems.url = "github:nix-systems/default";
   };
 
-  outputs = inputs@{ flake-utils, nixpkgs, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs =
-          import nixpkgs {
-            inherit system;
+  outputs = inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = import inputs.systems;
+
+      perSystem = { config, inputs', pkgs, system, ... }: {
+        _module.args.pkgs =
+          import inputs.nixpkgs {
+            localSystem = system;
             overlays = [
+              inputs.ghciwatch-compat.overlays.default
               inputs.haskell-overlay.overlay
               (import ./nix/overlays/haskell-packages.nix)
             ];
           };
-      in
-      rec {
+
         packages = {
-          default = packages.template;
+          default = config.packages.template;
 
           template = pkgs.haskellPackages.template;
         };
 
-        devShells = {
-          default = devShells.template;
-
-          template = packages.template.env.overrideAttrs (prev: {
-            buildInputs = (prev.buildInputs or [ ]) ++ [
+        devShells.default =
+          pkgs.mkShell {
+            inputsFrom = [ config.packages.template.env ];
+            packages = [
               pkgs.cabal-install
-              pkgs.ghcid
+              pkgs.ghciwatch-compat-ghcid
               pkgs.nixpkgs-fmt
             ];
-          });
-        };
-      }
-    );
+          };
+      };
+    };
 }
