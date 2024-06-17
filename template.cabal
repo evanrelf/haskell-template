@@ -27,7 +27,6 @@ common common
     , LambdaCase
     , OverloadedRecordDot
     , OverloadedStrings
-    , StrictData
   ghc-options:
     -Wall
     -Wcompat
