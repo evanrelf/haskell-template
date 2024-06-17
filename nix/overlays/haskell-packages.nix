@@ -1,22 +1,22 @@
-pkgsFinal: pkgsPrev:
+final: prev:
 
 let
-  inherit (pkgsPrev) haskell-overlay;
+  inherit (prev) haskell-overlay;
 
 in
 haskell-overlay.mkOverlay
 {
   extensions = [
-    (haskell-overlay.sources (haskellPackagesFinal: haskellPackagesPrev: {
+    (haskell-overlay.sources (hfinal: hprev: {
       template = ../../.;
     }))
 
-    (haskell-overlay.overrideCabal (haskellPackagesFinal: haskellPackagesPrev: {
-      template = prev: {
+    (haskell-overlay.overrideCabal (hfinal: hprev: {
+      template = attrs: {
         doBenchmark = true;
       };
     }))
   ];
 }
-  pkgsFinal
-  pkgsPrev
+  final
+  prev
