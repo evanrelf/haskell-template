@@ -60,9 +60,7 @@ executable template
     , common
     , executable
   main-is: src/Main.hs
-  build-depends:
-    , optparse-applicative
-    , template
+  build-depends: template
 
 test-suite test
   import:
